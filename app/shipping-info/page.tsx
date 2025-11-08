@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 export default function ShippingInfo() {
-  const [lang] = useState<"es" | "en">("es");
+  const [lang, setLang] = useState<"es" | "en">("es");
 
   const t = {
     es: {
@@ -21,13 +21,13 @@ export default function ShippingInfo() {
       references: "Referencias adicionales",
       referencesPlaceholder: "Entre qué calles, color de casa...",
       shippingMethod: "Método de envío",
-      selectMethod: "Selecciona método",
-      ems: "EMS - Rápido (3-12 días) - $23",
-      epacket: "ePacket Light - Medio (10-19 días) - $12",
-      small: "Small Packet - Económico (15-25 días) - $9",
+      selectMethod: "Selecciona el tipo de envío que prefieres",
+      ems: "🚀 Opción 1 - (Recomendado)",
+      epacket: "✈️ Opción 2 - (Rápido)",
+      small: "📦 Opción 3 - (Más económico)",
       comments: "Comentarios adicionales",
       submit: "Enviar información",
-      back: "← Volver al inicio"
+      footer: "Japan Bridge Co. • Tu puente hacia Japón"
     },
     en: {
       title: "Shipping Information",
@@ -44,13 +44,13 @@ export default function ShippingInfo() {
       references: "Additional references",
       referencesPlaceholder: "Between which streets, house color...",
       shippingMethod: "Shipping method",
-      selectMethod: "Select method",
-      ems: "EMS - Fast (3-12 days) - $23",
-      epacket: "ePacket Light - Medium (10-19 days) - $12",
-      small: "Small Packet - Economical (15-25 days) - $9",
+      selectMethod: "Select your preferred shipping type",
+      ems: "🚀 Option 1 - (Recommended)",
+      epacket: "✈️ Option 2 - (Fast)",
+      small: "📦 Option 3 - (Most economical)",
       comments: "Additional comments",
       submit: "Submit information",
-      back: "← Back to home"
+      footer: "Japan Bridge Co. • Your bridge to Japan"
     }
   };
 
@@ -59,14 +59,29 @@ export default function ShippingInfo() {
   return (
     <div className="min-h-screen bg-gray-50">
       
-      {/* Header simple */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="mx-auto max-w-3xl px-6 py-4">
-          <a href="/" className="text-sm text-gray-600 hover:text-gray-900">
-            {text.back}
-          </a>
+      {/* HEADER - Igual que página principal */}
+      <header className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          <div className="flex items-center gap-8">
+            <a href="/" className="text-xl font-semibold text-gray-900">Japan Bridge</a>
+            <nav className="hidden md:flex items-center gap-6 text-sm">
+              <a href="/" className="text-gray-600 hover:text-gray-900 transition-colors">
+                {lang === "es" ? "← Inicio" : "← Home"}
+              </a>
+            </nav>
+          </div>
+          
+          <button
+            onClick={() => setLang(lang === "es" ? "en" : "es")}
+            className="rounded-full bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition-all hover:bg-gray-200"
+          >
+            {lang === "es" ? "EN" : "ES"}
+          </button>
         </div>
       </header>
+
+      {/* Espaciador para el header fijo */}
+      <div className="h-20"></div>
 
       {/* Formulario */}
       <div className="mx-auto max-w-3xl px-6 py-12">
@@ -91,7 +106,7 @@ export default function ShippingInfo() {
               type="text"
               name="nombre"
               required
-              className="w-full rounded-xl border border-gray-300 px-4 py-3"
+              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 transition-all focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
             />
           </div>
 
@@ -104,7 +119,7 @@ export default function ShippingInfo() {
               type="email"
               name="email"
               required
-              className="w-full rounded-xl border border-gray-300 px-4 py-3"
+              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 transition-all focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
             />
           </div>
 
@@ -117,7 +132,7 @@ export default function ShippingInfo() {
               type="tel"
               name="telefono"
               required
-              className="w-full rounded-xl border border-gray-300 px-4 py-3"
+              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 transition-all focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
             />
           </div>
 
@@ -130,7 +145,7 @@ export default function ShippingInfo() {
               type="text"
               name="pais"
               required
-              className="w-full rounded-xl border border-gray-300 px-4 py-3"
+              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 transition-all focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
             />
           </div>
 
@@ -143,7 +158,7 @@ export default function ShippingInfo() {
               type="text"
               name="estado"
               required
-              className="w-full rounded-xl border border-gray-300 px-4 py-3"
+              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 transition-all focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
             />
           </div>
 
@@ -156,7 +171,7 @@ export default function ShippingInfo() {
               type="text"
               name="ciudad"
               required
-              className="w-full rounded-xl border border-gray-300 px-4 py-3"
+              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 transition-all focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
             />
           </div>
 
@@ -169,7 +184,7 @@ export default function ShippingInfo() {
               type="text"
               name="codigo_postal"
               required
-              className="w-full rounded-xl border border-gray-300 px-4 py-3"
+              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 transition-all focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
             />
           </div>
 
@@ -183,7 +198,7 @@ export default function ShippingInfo() {
               rows={3}
               required
               placeholder={text.addressPlaceholder}
-              className="w-full rounded-xl border border-gray-300 px-4 py-3"
+              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 transition-all focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
             />
           </div>
 
@@ -196,7 +211,7 @@ export default function ShippingInfo() {
               name="referencias"
               rows={2}
               placeholder={text.referencesPlaceholder}
-              className="w-full rounded-xl border border-gray-300 px-4 py-3"
+              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 transition-all focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
             />
           </div>
 
@@ -208,12 +223,12 @@ export default function ShippingInfo() {
             <select
               name="metodo_envio"
               required
-              className="w-full rounded-xl border border-gray-300 px-4 py-3"
+              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 transition-all focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
             >
               <option value="">{text.selectMethod}</option>
-              <option value="EMS">{text.ems}</option>
-              <option value="ePacket">{text.epacket}</option>
-              <option value="Small Packet">{text.small}</option>
+              <option value="Opción 1 - Recomendado">{text.ems}</option>
+              <option value="Opción 2 - Rápido">{text.epacket}</option>
+              <option value="Opción 3 - Económico">{text.small}</option>
             </select>
           </div>
 
@@ -225,20 +240,35 @@ export default function ShippingInfo() {
             <textarea
               name="comentarios"
               rows={3}
-              className="w-full rounded-xl border border-gray-300 px-4 py-3"
+              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 transition-all focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
             />
           </div>
 
           {/* Botón */}
           <button
             type="submit"
-            className="w-full rounded-full bg-red-600 px-8 py-4 text-lg font-semibold text-white hover:bg-red-700"
+            className="w-full rounded-full bg-red-600 px-8 py-4 text-lg font-semibold text-white transition-all hover:bg-red-700"
           >
             {text.submit}
           </button>
 
         </form>
       </div>
+
+      {/* FOOTER - Igual que página principal */}
+      <footer className="border-t border-gray-200 bg-white py-12">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-8 text-center">
+            <div className="mb-4 text-2xl font-semibold text-gray-900">Japan Bridge</div>
+            <p className="text-sm text-gray-600">{text.footer}</p>
+          </div>
+
+          <div className="mt-8 text-center text-xs text-gray-400">
+            © 2024 Japan Bridge Co. {lang === "es" ? "Todos los derechos reservados" : "All rights reserved"}
+          </div>
+        </div>
+      </footer>
+
     </div>
   );
 }
