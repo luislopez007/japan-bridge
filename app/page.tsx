@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 import { useState, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { Analytics } from "@vercel/analytics/next";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -765,7 +766,8 @@ storesDesc: "We shop at these stores and many more in Japan",
             </div>
           </div>
         </footer>
-      </main>
+            </main>
+      <Analytics />
     </div>
   );
 }
