@@ -11,7 +11,13 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 export default function Home() {
-  const [lang, setLang] = useState<"es" | "en">("es");
+  const [lang, setLang] = useState<"es" | "en">(() => {
+  if (typeof window !== 'undefined') {
+    const browserLang = navigator.language.toLowerCase();
+    return browserLang.startsWith('es') ? 'es' : 'en';
+  }
+  return 'en';
+});
   const [showOtherCountry, setShowOtherCountry] = useState(false);
   
   const containerRef = useRef<HTMLDivElement>(null);
